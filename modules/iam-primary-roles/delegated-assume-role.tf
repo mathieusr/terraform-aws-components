@@ -14,16 +14,16 @@ data "aws_iam_policy_document" "delegated_assume_role" {
     ]
   }
 
-  statement {
-    sid     = "DenyIdentityRootAssumeRole"
-    effect  = "Deny"
-    actions = ["sts:AssumeRole"]
-    resources = [
-      format("arn:aws:iam::%s:role/*", local.root_account_id),
-      # format("arn:aws:iam::%s:role/*", local.identity_account_id),
-      # format("arn:aws:iam::%s:role/*", local.audit_account_id),
-    ]
-  }
+  # statement {
+  #   sid     = "DenyIdentityRootAssumeRole"
+  #   effect  = "Deny"
+  #   actions = ["sts:AssumeRole"]
+  #   resources = [
+  #     format("arn:aws:iam::%s:role/*", local.root_account_id),
+  #     # format("arn:aws:iam::%s:role/*", local.identity_account_id),
+  #     # format("arn:aws:iam::%s:role/*", local.audit_account_id),
+  #   ]
+  # }
 }
 
 resource "aws_iam_policy" "delegated_assume_role" {
