@@ -36,28 +36,28 @@ locals {
 data "aws_iam_policy_document" "empty" {
 }
 
-data "aws_iam_policy_document" "saml_provider_assume" {
-  statement {
-    sid = "SamlProviderAssume"
-    actions = [
-      "sts:AssumeRoleWithSAML",
-      "sts:TagSession",
-    ]
+# data "aws_iam_policy_document" "saml_provider_assume" {
+#   statement {
+#     sid = "SamlProviderAssume"
+#     actions = [
+#       "sts:AssumeRoleWithSAML",
+#       "sts:TagSession",
+#     ]
 
-    principals {
-      type = "Federated"
+#     principals {
+#       type = "Federated"
 
-      # Loop over the IDPs from the `sso` component
-      identifiers = [for name, arn in data.terraform_remote_state.sso.outputs.saml_provider_arn : arn]
-    }
+#       # Loop over the IDPs from the `sso` component
+#       identifiers = [for name, arn in data.terraform_remote_state.sso.outputs.saml_provider_arn : arn]
+#     }
 
-    condition {
-      test     = "StringEquals"
-      variable = "SAML:aud"
-      values   = ["https://signin.aws.amazon.com/saml"]
-    }
-  }
-}
+#     condition {
+#       test     = "StringEquals"
+#       variable = "SAML:aud"
+#       values   = ["https://signin.aws.amazon.com/saml"]
+#     }
+#   }
+# }
 
 data "aws_iam_policy_document" "primary_roles_assume" {
   for_each = local.roles_config
@@ -102,7 +102,8 @@ data "aws_iam_policy_document" "primary_roles_assume" {
 data "aws_iam_policy_document" "aggregated" {
   for_each = local.roles_config
 
-  source_json   = local.roles_config[each.key].sso_login_enabled ? data.aws_iam_policy_document.saml_provider_assume.json : data.aws_iam_policy_document.empty.json
+  # source_json   = local.roles_config[each.key].sso_login_enabled ? data.aws_iam_policy_document.saml_provider_assume.json : data.aws_iam_policy_document.empty.json
+  source_json   = data.aws_iam_policy_document.empty.json
   override_json = data.aws_iam_policy_document.primary_roles_assume[each.key].json
 }
 
