@@ -23,7 +23,7 @@ data "terraform_remote_state" "tfstate" {
   config = {
     encrypt              = true
     bucket               = local.tfstate_bucket
-    workspace_key_prefix = "tfstate"
+    workspace_key_prefix = "tfstate-backend"
     key                  = "terraform.tfstate"
     region               = var.region
     role_arn             = local.tfstate_access_role_arn
