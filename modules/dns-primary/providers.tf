@@ -9,7 +9,7 @@ provider "aws" {
 }
 
 module "iam_roles" {
-  source = "../account-map/modules/iam-roles"
+  source = "../central-account/modules/iam-roles"
   stage  = var.stage
   region = var.region
 }
