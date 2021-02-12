@@ -3,9 +3,9 @@ provider "aws" {
   alias  = "primary"
   region = var.region
 
-  assume_role {
-    role_arn = coalesce(var.import_role_arn, module.iam_roles.dns_terraform_role_arn)
-  }
+  # assume_role {
+  #   role_arn = coalesce(var.import_role_arn, module.iam_roles.dns_terraform_role_arn)
+  # }
 }
 
 provider "aws" {
@@ -13,16 +13,16 @@ provider "aws" {
   alias  = "delegated"
   region = var.region
 
-  assume_role {
-    role_arn = coalesce(var.import_role_arn, module.iam_roles.terraform_role_arn)
-  }
+  # assume_role {
+  #   role_arn = coalesce(var.import_role_arn, module.iam_roles.terraform_role_arn)
+  # }
 }
 
-module "iam_roles" {
-  source = "../account-map/modules/iam-roles"
-  stage  = var.stage
-  region = var.region
-}
+# module "iam_roles" {
+#   source = "../account-map/modules/iam-roles"
+#   stage  = var.stage
+#   region = var.region
+# }
 
 variable "import_role_arn" {
   type        = string
