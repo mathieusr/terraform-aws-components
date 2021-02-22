@@ -3,6 +3,12 @@ variable "region" {
   description = "AWS Region"
 }
 
+variable "basic_stage" {
+  type = list(string)
+  description = "Basic stage"
+  default = ["root", "dns", "identity", "prod"]
+}
+
 variable "root_account_aws_name" {
   type        = string
   description = "The name of the root account as reported by AWS"
@@ -13,23 +19,23 @@ variable "root_account_aws_id" {
   description = "The id of the root account as reported by AWS"
 }
 
-# variable "root_account_stage_name" {
-#   type        = string
-#   default     = "root"
-#   description = "The stage name for the root account"
-# }
+variable "root_account_stage_name" {
+  type        = string
+  default     = "root"
+  description = "The stage name for the root account"
+}
 
-# variable "identity_account_stage_name" {
-#   type        = string
-#   default     = "identity"
-#   description = "The stage name for the account holding primary IAM roles"
-# }
+variable "identity_account_stage_name" {
+  type        = string
+  default     = "identity"
+  description = "The stage name for the account holding primary IAM roles"
+}
 
-# variable "dns_account_stage_name" {
-#   type        = string
-#   default     = "dns"
-#   description = "The stage name for the primary DNS account"
-# }
+variable "dns_account_stage_name" {
+  type        = string
+  default     = "dns"
+  description = "The stage name for the primary DNS account"
+}
 
 # variable "audit_account_stage_name" {
 #   type        = string
