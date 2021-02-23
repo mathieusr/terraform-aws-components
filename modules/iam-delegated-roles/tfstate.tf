@@ -19,7 +19,7 @@ data "terraform_remote_state" "tfstate" {
 
   backend   = "s3"
   # euw1-root
-  workspace = format("%s-%s", module.this.environment, var.tfstate_backend_stage_name)
+  workspace = format("%s-%s", var.tfstate_backend_environment_name, var.tfstate_backend_stage_name)
 
   config = {
     encrypt              = true
