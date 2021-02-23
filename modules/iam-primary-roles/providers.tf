@@ -17,6 +17,8 @@ module "iam_roles" {
   tfstate_assume_role = false
   tfstate_bucket_environment_name = var.tfstate_bucket_environment_name
   region      = var.region
+  context     = var.context
+  tfstate_account_id = var.tfstate_account_id
 }
 
 variable "import_role_arn" {
