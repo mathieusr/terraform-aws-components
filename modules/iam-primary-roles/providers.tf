@@ -15,6 +15,7 @@ module "iam_roles" {
   source      = "../central-account/modules/iam-roles"
   stage       = var.stage
   tfstate_assume_role = false
+  tfstate_bucket_environment_name = var.tfstate_bucket_environment_name
   region      = var.region
 }
 
