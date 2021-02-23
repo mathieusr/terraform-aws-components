@@ -60,6 +60,12 @@ variable "iam_primary_roles_stage_name" {
   default     = "identity"
 }
 
+variable "tfstate_backend_environment_name" {
+  type        = string
+  description = "The name of the environment where the Terraform state backend is provisioned"
+  default     = ""
+}
+
 variable "tfstate_backend_stage_name" {
   type        = string
   description = "The name of the stage where the Terraform state backend is provisioned"
