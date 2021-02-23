@@ -18,12 +18,13 @@ data "terraform_remote_state" "tfstate" {
   count = module.this.stage == var.tfstate_backend_stage_name ? 1 : 0
 
   backend   = "s3"
+  # euw1-root
   workspace = format("%s-%s", module.this.environment, var.tfstate_backend_stage_name)
 
   config = {
     encrypt              = true
     bucket               = local.tfstate_bucket
-    workspace_key_prefix = "tfstate-backend"
+    workspace_key_prefix = "tfstate"
     key                  = "terraform.tfstate"
     region               = var.region
     role_arn             = local.tfstate_access_role_arn
