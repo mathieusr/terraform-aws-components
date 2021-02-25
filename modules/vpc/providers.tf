@@ -1,18 +1,21 @@
 provider "aws" {
   region = var.region
 
-  # assume_role {
-  #   # `terraform import` will not use data from a data source,
-  #   # so on import we have to explicitly specify the role
-  #   role_arn = coalesce(var.import_role_arn, module.iam_roles.terraform_role_arn)
-  # }
+  assume_role {
+    # `terraform import` will not use data from a data source,
+    # so on import we have to explicitly specify the role
+    role_arn = coalesce(var.import_role_arn, module.iam_roles.terraform_role_arn)
+  }
 }
 
-# module "iam_roles" {
-#   source = "../account-map/modules/iam-roles"
-#   stage  = var.stage
-#   region = var.region
-# }
+module "iam_roles" {
+  source = "../central-account/modules/iam-roles"
+  stage  = var.stage
+  region = var.region
+  tfstate_bucket_environment_name = var.tfstate_bucket_environment_name
+  context     = module.this.context
+  tfstate_account_id = var.tfstate_account_id
+}
 
 variable "import_role_arn" {
   type        = string
