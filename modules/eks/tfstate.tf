@@ -1,5 +1,6 @@
 data "terraform_remote_state" "primary_roles" {
   backend   = "s3"
+  # workspace: gbl-identity
   workspace = format("%s-%s", var.iam_roles_environment_name, var.iam_primary_roles_stage_name)
 
   config = {
@@ -16,6 +17,7 @@ data "terraform_remote_state" "primary_roles" {
 
 data "terraform_remote_state" "delegated_roles" {
   backend   = "s3"
+  # workspace: gbl-prod
   workspace = format("%s-%s", var.iam_roles_environment_name, module.this.stage)
 
   config = {
