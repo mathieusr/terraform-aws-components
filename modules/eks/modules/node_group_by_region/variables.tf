@@ -26,5 +26,6 @@ variable "cluster_context" {
     vpc_id                    = string
     resources_to_tag          = list(string)
     module_depends_on         = any
+    public_subnet             = bool
   })
 }

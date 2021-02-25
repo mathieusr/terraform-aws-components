@@ -158,6 +158,8 @@ variable "node_groups" {
     # List of auto-launched resource types to tag
     resources_to_tag = list(string)
     tags             = map(string)
+    # Set on public subnet
+    public_subnet = bool
   }))
   description = "List of objects defining a node group for the cluster"
   default     = null
@@ -183,6 +185,7 @@ variable "node_group_defaults" {
     min_group_size            = number
     resources_to_tag          = list(string)
     tags                      = map(string)
+    public_subnet             = bool
   })
   description = "Defaults for node groups in the cluster"
 }
