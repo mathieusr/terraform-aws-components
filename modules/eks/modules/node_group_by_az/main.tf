@@ -4,7 +4,7 @@ data "aws_subnet_ids" "private" {
   vpc_id = var.cluster_context.vpc_id
 
   tags = {
-    "${var.cluster_context.subnet_type_tag_key}" = "private"
+    "${var.cluster_context.subnet_type_tag_key}" = var.cluster_context.public_subnet ? "public" : "private"
   }
 
   filter {

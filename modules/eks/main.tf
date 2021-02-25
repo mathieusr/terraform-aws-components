@@ -126,6 +126,7 @@ module "region_node_group" {
     resources_to_tag          = each.value.resources_to_tag == null ? var.node_group_defaults.resources_to_tag : each.value.resources_to_tag
     subnet_type_tag_key       = var.subnet_type_tag_key
     vpc_id                    = local.vpc_id
+    public_subnet             = each.value.public_subnet == null ? var.node_group_defaults.public_subnet : each.value.public_subnet
 
     # See "Ensure ordering of resource creation" comment above for explanation
     # of "module_depends_on"

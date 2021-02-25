@@ -102,4 +102,5 @@ node_group_defaults = {
   kubernetes_taints         = {}
   resources_to_tag          = ["instance", "volume"]
   tags                      = null
+  public_subnet             = false
 }
