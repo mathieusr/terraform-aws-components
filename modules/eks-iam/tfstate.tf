@@ -30,21 +30,21 @@ data "terraform_remote_state" "account_map" {
   }
 }
 
-data "terraform_remote_state" "dns_delegated" {
-  backend   = "s3"
-  workspace = terraform.workspace
+# data "terraform_remote_state" "dns_delegated" {
+#   backend   = "s3"
+#   workspace = terraform.workspace
 
-  config = {
-    encrypt              = true
-    bucket               = local.tfstate_bucket
-    workspace_key_prefix = "dns-delegated"
-    key                  = "terraform.tfstate"
-    dynamodb_table       = local.tfstate_dynamodb_table
-    region               = var.region
-    role_arn             = local.tfstate_access_role_arn
-    acl                  = "bucket-owner-full-control"
-  }
-}
+#   config = {
+#     encrypt              = true
+#     bucket               = local.tfstate_bucket
+#     workspace_key_prefix = "dns-delegated"
+#     key                  = "terraform.tfstate"
+#     dynamodb_table       = local.tfstate_dynamodb_table
+#     region               = var.region
+#     role_arn             = local.tfstate_access_role_arn
+#     acl                  = "bucket-owner-full-control"
+#   }
+# }
 
 data "terraform_remote_state" "dns_gbl_delegated" {
   backend   = "s3"
@@ -63,10 +63,10 @@ data "terraform_remote_state" "dns_gbl_delegated" {
 }
 
 locals {
-  default_dns_zone_id = data.terraform_remote_state.dns_delegated.outputs.default_dns_zone_id
+  default_dns_zone_id = data.terraform_remote_state.dns_gbl_delegated.outputs.default_dns_zone_id
 
   zone_ids = compact(concat(
-    values(data.terraform_remote_state.dns_delegated.outputs.zones)[*].zone_id,
+    # values(data.terraform_remote_state.dns_delegated.outputs.zones)[*].zone_id,
     values(data.terraform_remote_state.dns_gbl_delegated.outputs.zones)[*].zone_id
   ))
 }
