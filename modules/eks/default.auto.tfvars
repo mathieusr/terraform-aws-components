@@ -72,10 +72,10 @@ delegated_iam_roles = [
     role   = "terraform"
     groups = ["system:masters"]
   },
-  # {
-  #   role   = "helm"
-  #   groups = ["system:masters"]
-  # }
+  {
+    role   = "helm"
+    groups = ["system:masters"]
+  }
 ]
 
 public_access_cidrs = ["0.0.0.0/0"]
