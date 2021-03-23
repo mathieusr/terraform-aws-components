@@ -3,11 +3,20 @@ variable "region" {
   description = "AWS Region"
 }
 
-variable "basic_stage" {
-  type = list(string)
-  description = "Basic stage"
-  default = ["root", "dns", "identity", "prod"]
+# !!!!!!!!!!!!!!!!!! Specific to CIP !!!!!!!!!!!!!!!!!!!!
+
+variable "full_account_map" {
+  type = map(string)
+  description = "Account map"
 }
+
+variable "stage_in_root_account" {
+  type = list(string)
+  description =  "List of stage who are host in CIP root account"
+}
+
+# !!!!!!!!!!!!!!!!!! End Specific to CIP !!!!!!!!!!!!!!!!!!!!
+
 
 variable "root_account_aws_name" {
   type        = string
@@ -37,11 +46,11 @@ variable "dns_account_stage_name" {
   description = "The stage name for the primary DNS account"
 }
 
-# variable "audit_account_stage_name" {
-#   type        = string
-#   default     = "audit"
-#   description = "The stage name for the audit account"
-# }
+variable "audit_account_stage_name" {
+  type        = string
+  default     = "audit"
+  description = "The stage name for the audit account"
+}
 
 variable "iam_role_arn_template" {
   type        = string

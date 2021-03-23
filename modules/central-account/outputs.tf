@@ -14,16 +14,16 @@ output "dns_account_stage_name" {
   value = var.dns_account_stage_name
 }
 
-# output "audit_account_stage_name" {
-#   value = var.audit_account_stage_name
-# }
+output "audit_account_stage_name" {
+  value = var.audit_account_stage_name
+}
 
 # output "org" {
 #   value = data.aws_organizations_organization.organization
 # }
 
 output "full_account_map" {
-  value = local.full_account_map
+  value = var.full_account_map
 }
 
 # output "eks_accounts" {
@@ -41,3 +41,12 @@ output "full_account_map" {
 output "terraform_roles" {
   value = local.terraform_roles
 }
+
+
+# !!!!!!!!!!!!!!!!!! Specific to CIP !!!!!!!!!!!!!!!!!!!!
+
+output "stage_in_root_account" {
+  value = var.stage_in_root_account
+}
+
+# !!!!!!!!!!!!!!!!!! End Specific to CIP !!!!!!!!!!!!!!!!!!!!
