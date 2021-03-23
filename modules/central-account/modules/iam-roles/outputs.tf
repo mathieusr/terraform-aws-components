@@ -3,15 +3,8 @@ output "terraform_role_arn" {
   "") : data.terraform_remote_state.account_map.outputs.terraform_roles[module.this.stage]
 }
 
-# output "org_role_arn" {
-#   value = module.this.stage == data.terraform_remote_state.account_map.outputs.root_account_stage_name ? null : format(
-#     "arn:aws:iam::%s:role/OrganizationAccountAccessRole",
-#     data.terraform_remote_state.account_map.outputs.full_account_map[module.this.stage]
-#   )
-# }
-
 output "org_role_arn" {
-  value = contains(data.terraform_remote_state.account_map.outputs.stage_in_root_account, module.this.stage) ? null : format(
+  value = module.this.stage == data.terraform_remote_state.account_map.outputs.root_account_stage_name ? null : format(
     "arn:aws:iam::%s:role/CipProdAccessRole",
     data.terraform_remote_state.account_map.outputs.full_account_map[module.this.stage]
   )
