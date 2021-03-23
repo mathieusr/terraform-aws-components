@@ -14,7 +14,7 @@ provider "aws" {
 module "iam_roles" {
   source      = "../central-account/modules/iam-roles"
   stage       = var.stage
-  assume_role = false
+  tfstate_assume_role = false
   region      = var.region
   tfstate_bucket_environment_name = var.tfstate_bucket_environment_name
   context     = module.this.context
