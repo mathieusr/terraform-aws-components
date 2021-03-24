@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "saml_provider_assume" {
       type = "Federated"
 
       # Loop over the IDPs from the `sso` component
-      identifiers = [for name, arn in data.terraform_remote_state.sso.outputs.saml_provider_arn : arn]
+      identifiers = [for name, arn in data.terraform_remote_state.sso.outputs.saml_provider_arns : arn]
     }
 
     condition {
