@@ -36,10 +36,10 @@ primary_iam_roles = [
     role   = "admin"
     groups = ["system:masters", "idp:ops"]
   },
-  # {
-  #   role   = "ops"
-  #   groups = ["idp:ops"]
-  # },
+  {
+    role   = "ops"
+    groups = ["idp:ops"]
+  },
   # {
   #   role   = "poweruser"
   #   groups = ["idp:poweruser"]
@@ -56,10 +56,10 @@ delegated_iam_roles = [
     role   = "admin"
     groups = ["system:masters", "idp:ops"]
   },
-  # {
-  #   role   = "ops"
-  #   groups = ["idp:ops"]
-  # },
+  {
+    role   = "ops"
+    groups = ["idp:ops"]
+  },
   # {
   #   role   = "poweruser"
   #   groups = ["idp:poweruser"]
