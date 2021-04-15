@@ -42,6 +42,7 @@ module "eks_node_group" {
   kubernetes_taints         = local.enabled ? var.cluster_context.kubernetes_taints : null
   kubernetes_version        = local.enabled ? var.cluster_context.kubernetes_version : null
   resources_to_tag          = local.enabled ? var.cluster_context.resources_to_tag : null
+  existing_workers_role_policy_arns = local.enabled ? var.cluster_context.existing_workers_role_policy_arns : null
   subnet_ids                = local.enabled ? local.subnet_ids : null
   # Prevent the node groups from being created before the Kubernetes aws-auth configMap
   module_depends_on = var.cluster_context.module_depends_on
