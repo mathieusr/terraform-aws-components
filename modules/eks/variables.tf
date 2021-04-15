@@ -201,3 +201,9 @@ variable "iam_primary_roles_stage_name" {
   description = "The name of the stage where the IAM primary roles are provisioned"
   default     = "identity"
 }
+
+variable "existing_workers_role_policy_arns" {
+  type        = list(string)
+  default     = []
+  description = "List of existing policy ARNs that will be attached to the workers default role on creation"
+}

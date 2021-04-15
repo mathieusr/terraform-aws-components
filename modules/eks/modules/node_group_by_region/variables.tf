@@ -27,5 +27,6 @@ variable "cluster_context" {
     resources_to_tag          = list(string)
     module_depends_on         = any
     public_subnet             = bool
+    existing_workers_role_policy_arns = list(string)
   })
 }
