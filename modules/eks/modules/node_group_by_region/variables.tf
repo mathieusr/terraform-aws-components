@@ -28,5 +28,6 @@ variable "cluster_context" {
     module_depends_on         = any
     public_subnet             = bool
     existing_workers_role_policy_arns = list(string)
+    before_cluster_joining_userdata = string
   })
 }
