@@ -211,5 +211,12 @@ variable "existing_workers_role_policy_arns" {
 variable "before_cluster_joining_userdata" {
   type = string
   default = ""
-  description = "List of command to execute when cluster node group bootstraping"
+  description = "List of command to execute before cluster node group bootstraping"
 }
+
+variable "after_cluster_joining_userdata" {
+  type = string
+  default = ""
+  description = "List of command to execute after cluster node group bootstraping"
+}
+
