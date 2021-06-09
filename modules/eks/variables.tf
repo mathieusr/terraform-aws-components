@@ -207,3 +207,9 @@ variable "existing_workers_role_policy_arns" {
   default     = []
   description = "List of existing policy ARNs that will be attached to the workers default role on creation"
 }
+
+variable "before_cluster_joining_userdata" {
+  type = string
+  default = ""
+  description = "List of command to execute when cluster node group bootstraping"
+}

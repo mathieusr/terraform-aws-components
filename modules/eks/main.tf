@@ -128,6 +128,7 @@ module "region_node_group" {
     vpc_id                    = local.vpc_id
     public_subnet             = each.value.public_subnet == null ? var.node_group_defaults.public_subnet : each.value.public_subnet
     existing_workers_role_policy_arns = var.existing_workers_role_policy_arns
+    before_cluster_joining_userdata = var.before_cluster_joining_userdata
 
     # See "Ensure ordering of resource creation" comment above for explanation
     # of "module_depends_on"
